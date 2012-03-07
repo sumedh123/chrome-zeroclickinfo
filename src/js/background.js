@@ -10,6 +10,9 @@ function Background()
             $this.meanings = (localStorage['meanings'] !== "false");
             callback(localStorage);
         }
+        if(request.say){
+            chrome.tts.speak(request.say);
+        }
     });
 }
 

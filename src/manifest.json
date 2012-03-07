@@ -393,6 +393,8 @@
     "options_page": "html/options.html",
     "background_page": "html/background.html", 
     "permissions": [
-        "https://chrome.duckduckgo.com/*"
+        "https://chrome.duckduckgo.com/*",
+        "ttsEngine",
+        "tts"
     ]
 }

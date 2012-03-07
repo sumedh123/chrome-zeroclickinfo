@@ -71,6 +71,11 @@ document.getElementsByName("btnG")[0].onclick = function(){
     qsearch();
 };
 
+function say(text) {
+   var request = {say: text};
+    chrome.extension.sendRequest(request);
+
+}
 
 function search(query)
 {
@@ -163,6 +168,8 @@ function displayAnswer(answer)
         var ddg_result = createResultDiv();
         ddg_result.className = "ddg_answer";
         ddg_result.innerHTML = answer;
+
+        say(answer);
     } else {
         setTimeout('displayAnswer("'+answer+'");', 200);
     }
