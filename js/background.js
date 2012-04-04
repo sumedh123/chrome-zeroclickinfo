@@ -1,6 +1,6 @@
 function Background()
 {
-    $this = this;
+    var $this = this;
     this.meanings = true;
     chrome.extension.onRequest.addListener(function(request, sender, callback){
         console.log(request);
@@ -12,8 +12,37 @@ function Background()
         }
 
         if (request.selection) {
-        
-        }
+            if (request.selection === "")
+                return;
+
+            var req = new XMLHttpRequest();
+            if($this.meanings)
+                req.open('GET', 'https://chrome.duckduckgo.com?q=' + encodeURIComponent(request.selection) + '&format=json', true);
+            else
+                req.open('GET', 'https://chrome.duckduckgo.com?q=' + encodeURIComponent(request.selection) + '&format=json&d=1', true);
+
+            req.onreadystatechange = function(data) {
+                if (req.readyState != 4)  { return; } 
+                var res = JSON.parse(req.responseText);
+
+                console.log('gotcha');
+                var out = 'Ask the duck';
+
+                if (res['AnswerType'] !== "" ||                                          
+                      (res['Type'] === 'A' && res['Abstract']  === '') ||                
+                      res['Type'] === 'E') {                                             
+                   out = res['Answer'];                                               
+                } else if (res['Type'] === 'A' && res['Abstract'] !== '') {              
+                   out = res['Heading'] + ": " + res['AbstractText'];                 
+                } 
+
+                chrome.contextMenus.update($this.menuID, {
+                    title: out
+                });
+            }
+            req.send(null);
+ 
+       }
     });
 
     this.menuID = chrome.contextMenus.create({

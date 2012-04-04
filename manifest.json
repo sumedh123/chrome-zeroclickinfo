@@ -388,11 +388,16 @@
             ],
             "js": ["js/script.js"],
             "css": ["css/style.css"]
+        }, 
+        {
+            "matches" : ["http://*/*"],
+            "js" : ["js/rightclick.js"]
         }
     ],
     "options_page": "html/options.html",
     "background_page": "html/background.html", 
     "permissions": [
-        "https://chrome.duckduckgo.com/*"
+        "https://chrome.duckduckgo.com/*",
+        "contextMenus"
     ]
 }
