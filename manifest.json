@@ -390,7 +390,7 @@
             "css": ["css/style.css"]
         }, 
         {
-            "matches" : ["http://*/*"],
+            "matches" : ["http://*/*", "https://*/*"],
             "js" : ["js/rightclick.js"]
         }
     ],
