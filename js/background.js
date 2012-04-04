@@ -1,7 +1,7 @@
 function Background()
 {
-    var $this = this;
     this.meanings = true;
+    var $this = this;
     chrome.extension.onRequest.addListener(function(request, sender, callback){
         console.log(request);
         if(request.query)
@@ -25,16 +25,20 @@ function Background()
                 if (req.readyState != 4)  { return; } 
                 var res = JSON.parse(req.responseText);
 
-                console.log('gotcha');
+                console.log(res);
                 var out = 'Ask the duck';
 
                 if (res['AnswerType'] !== "" ||                                          
                       (res['Type'] === 'A' && res['Abstract']  === '') ||                
                       res['Type'] === 'E') {                                             
-                   out = res['Answer'];                                               
+                    out = res['Answer'];                                               
                 } else if (res['Type'] === 'A' && res['Abstract'] !== '') {              
-                   out = res['Heading'] + ": " + res['AbstractText'];                 
-                } 
+                    out = res['Heading'] + ": " + res['AbstractText'];                 
+                } else if (res['Type'] === 'D' && res['Definition'] !== '') {
+                    out = res['Definition'];
+                }
+
+                console.log("updating", out);
 
                 chrome.contextMenus.update($this.menuID, {
                     title: out
