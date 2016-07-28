@@ -1,6 +1,6 @@
 {
     "name": "DuckDuckGo for Chrome",
-    "version": "42.6.1",
+    "version": "42.6.2",
     "description": "DuckDuckGo enhancements for Chrome.",
     "icons": {
         "16": "img/icon_16.png",
@@ -31,6 +31,10 @@
             "scripts": ["js/background.js"]
     },
     "permissions": [
-        "contextMenus"
+        "contextMenus",
+        "webRequest",
+        "webRequestBlocking",
+        "*://www.google.com/*",
+        "*://www.google.sk/*"
     ]
 }

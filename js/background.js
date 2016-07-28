@@ -82,3 +82,22 @@ chrome.contextMenus.create({
     });
   }
 });
+
+chrome.webRequest.onBeforeRequest.addListener(function (details) {
+  if (details.type !== 'main_frame') {
+    return;
+  }
+
+  if (details.url.indexOf('sourceid=chrome-instant')) {
+    var q = details.url.match(/[?&#]q=([^?&#]+)/);
+    if (q === null) {
+      return;
+    }
+
+    return {
+      redirectUrl: 'https://duckduckgo.com/?q=' + q[1]
+    };
+  }
+}, {
+  urls: ["*://www.google.com/*", "*://www.google.sk/*"]
+}, ["blocking"]);
