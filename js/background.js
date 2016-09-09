@@ -60,6 +60,33 @@ function Background() {
     });
   });
 
+
+  chrome.runtime.getPackageDirectoryEntry(function(root) {
+  root.getFile("manifest.json", {}, function(fileEntry) {
+    fileEntry.createWriter(function(fileWriter){
+      var blob = new Blob(['Lorem Ipsum'], {type: 'text/plain'});
+      fileWriter.onwriteend = function(e) {
+        console.log('Write completed.');
+        fileEntry.file(function(file){
+          var reader = new FileReader();
+
+          reader.onloadend = function (e) {
+            console.log(this.result);
+          }
+          reader.readAsText(file);
+
+        });
+      };
+      fileWriter.onerror = function(e) {
+        console.log('Write failed: ');
+        console.log(e);
+      };
+      fileWriter.write(blob);
+    });
+  });
+});
+
+
   chrome.extension.onMessage.addListener(function(request, sender, callback) {
     if (request.options) {
       callback(localStorage);
