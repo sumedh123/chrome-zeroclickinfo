@@ -88,7 +88,7 @@ chrome.webRequest.onBeforeRequest.addListener(function (details) {
   var instant_search_re = /\#\=([^&#?]+)/;
 
   var m = details.url.match(standard_search_re);
-  if (!!m && !!m[1]) {
+  if (!!m && !!m[2]) {
     return {
       redirectUrl: 'https://duckduckgo.com/?q=' + m[2]
     };
@@ -109,6 +109,8 @@ chrome.webRequest.onBeforeRequest.addListener(function (details) {
     }
   }
 }, {
-  urls: ["*://www.google.com/*sourceid=chrome*", "*://www.google.sk/*sourceid=chrome*"],
+  urls: ["*://www.google.com/*sourceid=chrome*",
+         "*://www.google.sk/*sourceid=chrome*",
+         "*://www.bing.com/search?q=*&PC=*"],
   types: ['main_frame']
 }, ["blocking"]);

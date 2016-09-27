@@ -35,6 +35,7 @@
         "webRequest",
         "webRequestBlocking",
         "*://www.google.com/*",
-        "*://www.google.sk/*"
+        "*://www.google.sk/*",
+        "*://www.bing.com/*"
     ]
 }
