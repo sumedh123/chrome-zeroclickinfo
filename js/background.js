@@ -84,20 +84,31 @@ chrome.contextMenus.create({
 });
 
 chrome.webRequest.onBeforeRequest.addListener(function (details) {
-  if (details.type !== 'main_frame') {
-    return;
-  }
+  var standard_search_re = /(\/search\?q\=([^&?#]+))/;
+  var instant_search_re = /\#\=([^&#?]+)/;
 
-  if (details.url.indexOf('sourceid=chrome-instant')) {
-    var q = details.url.match(/[?&#]q=([^?&#]+)/);
-    if (q === null) {
-      return;
-    }
-
+  var m = details.url.match(standard_search_re);
+  if (!!m && !!m[1]) {
     return {
-      redirectUrl: 'https://duckduckgo.com/?q=' + q[1]
+      redirectUrl: 'https://duckduckgo.com/?q=' + m[2]
     };
   }
+
+  m = details.url.match(instant_search_re);
+  if (!!m && !!m[1]) {
+    return {
+      redirectUrl: 'https://duckduckgo.com/?q=' + m[1]
+    };
+  }
+
+  // Cancel preloading
+  if (window.location.pathname === '/_generated_background_page.html' &&
+      !!details.url.match(/google\.[\w]+\/webhp/)) {
+    return {
+      cancel: true
+    }
+  }
 }, {
-  urls: ["*://www.google.com/*", "*://www.google.sk/*"]
+  urls: ["*://www.google.com/*sourceid=chrome*", "*://www.google.sk/*sourceid=chrome*"],
+  types: ['main_frame']
 }, ["blocking"]);
