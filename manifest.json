@@ -1,55 +1,100 @@
 {
-    "name": "DuckDuckGo for Chrome",
-    "version": "42.7.8",
-    "description": "DuckDuckGo enhancements for Chrome.",
-    "icons": {
-        "16": "img/icon_16.png",
-        "48": "img/icon_48.png",
-        "128": "img/icon_128.png"
-    },
-    "manifest_version": 2,
-    "browser_action": {
-        "default_icon": {
-            "19": "img/icon_19.png",
-            "38": "img/icon_38.png"
-        },
-        "default_popup": "html/popup.html"
-    },
-    "commands": {
-      "_execute_browser_action": {
-        "suggested_key": {
-          "default": "Alt+G",
-          "mac": "Alt+G",
-          "linux": "Alt+G",
-          "windows": "Alt+G"
-        }
-      }
-    },
-    "omnibox": {"keyword": "d"},
-    "options_page": "html/options.html",
-    "background": {
-            "scripts": ["js/background.js"]
-    },
-    "chrome_settings_overrides": {
-      "search_provider": {
-        "encoding": "UTF-8",
-        "favicon_url": "https://duckduckgo.com/favicon.ico",
-        "is_default": true,
-        "keyword": "duckduckgo.com",
-        "name": "DuckDuckGo Search",
-        "search_url": "https://duckduckgo.com/?q={searchTerms}"
-      }
-    },
-    "content_scripts": [
-      {
-        "matches": ["https://*.duckduckgo.com/*", "https://duckduckgo.com/*"],
-        "css": ["css/noatb.css"]
-      }
-    ],
-    "permissions": [
-        "contextMenus",
-        "webRequest",
-        "webRequestBlocking",
-        "*://*.duckduckgo.com/"
+  "version": "2017.1.26.1",
+  "author": { "email": "eff.software.projects@gmail.com" },
+  "applications": {
+    "gecko": {
+      "id": "jid1-MnnxcxisBPnSXQ@jetpack"
+    }
+  },
+  "incognito": "spanning",
+  "permissions": [
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "contextMenus",
+    "webRequest",
+    "webRequestBlocking",
+    "webNavigation",
+    "storage",
+    "cookies",
+    "privacy"
+  ],
+  "background": {
+    "scripts": [
+      "src/bootstrap.js",
+      "lib/punycode.js",
+      "lib/publicSuffixList.js",
+      "lib/basedomain.js",
+      "lib/sha1.js",
+      "lib/jsbn.js",
+      "lib/rsa.js",
+      "lib/underscore-min.js",
+      "data/surrogates.js",
+      "src/surrogates.js",
+      "src/multiDomainFirstParties.js",
+      "src/incognito.js",
+      "src/constants.js",
+      "src/storage.js",
+      "src/utils.js",
+      "src/htmlutils.js",
+      "src/webrequest.js",
+      "src/heuristicblocking.js",
+      "src/socialwidgetloader.js",
+      "src/migrations.js",
+      "src/background.js"
     ]
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "src/clobbercookie.js",
+        "src/clobberlocalstorage.js",
+        "src/fingerprinting.js",
+        "src/supercookie.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+	"src/socialwidgets.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ],
+  "default_locale": "en_US",
+  "description": "__MSG_description__",
+  "icons": {
+    "128": "icons/badger-128.png",
+    "16": "icons/badger-16.png",
+    "170": "icons/badger-170.png",
+    "19": "icons/badger-19.png",
+    "24": "icons/badger-24.png",
+    "32": "icons/badger-32.png",
+    "38": "icons/badger-38.png",
+    "48": "icons/badger-48.png"
+  },
+  "manifest_version": 2,
+  "minimum_chrome_version": "18.0",
+  "name": "__MSG_name__",
+  "browser_action": {
+    "default_icon": {
+      "19": "icons/badger-19.png",
+      "38": "icons/badger-38.png"
+    },
+    "default_popup": "skin/popup.html",
+    "default_title": "__MSG_name__"
+  },
+  "options_page": "/skin/options.html",
+  "web_accessible_resources": [
+    "skin/*",
+    "icons/*"
+  ]
 }

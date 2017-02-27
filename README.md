@@ -1,18 +1,37 @@
-# DuckDuckGo for Chrome
+Privacy Badger [![Build Status](https://travis-ci.org/EFForg/privacybadger.svg)](https://travis-ci.org/EFForg/privacybadger)
+===================
+Privacy Badger blocks spying ads and invisible trackers. It's there to ensure that companies can't track your browsing without your consent.
 
-This is the official Chrome Extension for DuckDuckGo.
+This extension is designed to automatically protect your privacy from third party trackers that load invisibly when you browse the web. We send the Do Not Track header with each request, and our extension evaluates the likelihood that you are still being tracked. If the algorithm deems the likelihood is too high, we automatically block your browser from responding to the domain. Just because a domain has been flagged by Privacy Badger's algorithm, doesn't mean that that domain is tracking you, just that it could be. 
 
-You can install this extension directly from the [Chrome web store](https://chrome.google.com/webstore/detail/duckduckgo-for-chrome/bpphkkgodbfncbcpgopijlfakfgmclao?hl=en).
+Our extension has three states. Red means Privacy Badger believes this third-party domain is a tracker, and has blocked it. Yellow means the domain is believed to be both a tracker and necessary for the functioning of the page, so Privacy Badger is allowing it but blocking its cookies to prevent it from uniquely identifying you. Green means that Privacy Badger believes this is not tracker. You can click on the Privacy Badger icon in your browser's toolbar if you wish to override the automatic blocking settings. Or, you can browse in peace as Privacy Badger starts finding and eating up web trackers one by one.
 
-It is licensed under the terms of the Apache License, Version 2.0 (see LICENSE).
+Nothing can stop the Privacy Badger from eating cookies when it's hungry!
 
-Copyright (c) 2012 - 2016 [duckduckgo.com](https://duckduckgo.com)
+Privacy Badger is a project of the Electronic Frontier Foundation.
 
-## Testing
-Tests use [Selenium Webdriver](http://seleniumhq.github.io/selenium/docs/api/javascript/index.html) and require:
-- [Node.js](https://nodejs.org/en/)
-- A Google Chrome executable (you must have the browser installed on your machine)
+##Developing
+For an easy build, simply enable developer mode in chrome://extensions, hit
+the "load unpacked extension" button and load up this directory.
 
-To install dependencies, just run `npm install`.
+Within the command line, install the dependencies.
 
-For tests, run `npm test`.
+```bash
+$ npm install
+```
+
+Developers should sign up for the privacy badger mailing list at https://lists.eff.org/mailman/listinfo/privacybadger
+### Testing
+
+After "unpacking" the extension, find your extension's ID and
+visit `chrome-extension://YOUR_EXTENSION_ID/tests/index.html`, replacing
+`YOUR_EXTENSION_ID` with your 32 character ID.
+
+For Selenium tests, run `./run_selenium_tests.sh` in the `tests` directory. 
+You need to have `chromedriver`, `xvfb` and `python-virtualenv` installed.
+
+This project is using the [QUnit](http://qunitjs.com/), [py.test](http://pytest.org/), [Selenium](http://www.seleniumhq.org/) test frameworks 
+along with [Travis CI](https://travis-ci.org/) for continuous integration.
+
+##License
+Privacy Badger is licensed under the GPLv3. See LICENSE for more details

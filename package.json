@@ -1,21 +1,10 @@
 {
-  "name": "chrome_zeroclickinfo",
-  "version": "0.100.0",
-  "engines": {
-    "node": ">=4.2"
+  "name": "privacy-badger-chrome-dev-tools",
+  "version": "1.0.0",
+  "description": "Developer tools for Privacy Badger for Chrome.",
+  "dependencies": {
+    "eslint": "~3.3.1",
+    "web-ext": "~1.6.0"
   },
-  "repository": "duckduckgo/chrome-zeroclickinfo",
-  "scripts": {
-    "postinstall": "export PATH='$PATH:$PWD/node_modules/chromedriver/bin'",
-    "test": "concurrently 'npm run jshint' 'npm run selenium'",
-    "selenium": "cd selenium-test && node test.js",
-    "jshint": "jshint js/ --verbose > jshint_log.txt"
-  },
-  "devDependencies": {
-    "chromedriver": "^2.27.2",
-    "concurrently": "^3.1.0",
-    "jshint": "^2.9.4",
-    "localStorage": "^1.0.3",
-    "selenium-webdriver": "^3.0.1"
-  }
+  "private": true
 }
