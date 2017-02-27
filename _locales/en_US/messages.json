@@ -15,10 +15,10 @@
         "message": "Manage Data"
     },
     "description": {
-        "message": "Privacy Badger protects you from trackers as you surf the web!"
+        "message": "Privacy Duck protects you from trackers as you surf the web!"
     },
     "disabled_for_these_domains": {
-        "message": "Privacy Badger is disabled for the domains listed below. You can add a domain either via the Privacy Badger icon in the address bar or by typing the domain (not a URL) in the box and clicking the \"Add domain\" button."
+        "message": "Privacy Duck is disabled for the domains listed below. You can add a domain either via the Privacy Duck icon in the address bar or by typing the domain (not a URL) in the box and clicking the \"Add domain\" button."
     },
     "download": {
         "message": "Download"
@@ -30,13 +30,13 @@
         "message": "Export user data"
     },
     "feed_the_badger_title": {
-        "message": "click to return control of this tracker to Privacy Badger"
+        "message": "click to return control of this tracker to Privacy Duck"
     },
     "firstRun_title": {
-        "message": "Thank you for installing Privacy Badger!"
+        "message": "Thank you for installing Privacy Duck!"
     },
     "first_run_text": {
-        "message": "Learn how Privacy Badger protects your privacy."
+        "message": "Learn how Privacy Duck protects your privacy."
     },
     "import": {
         "message": "Import"
@@ -54,7 +54,7 @@
         "message": "Invalid JSON file."
     },
     "name": {
-        "message": "Privacy Badger"
+        "message": "Privacy Duck"
     },
     "new_filters_added": {
         "message": "New filters added; see <a id='options_url' target='_blank'>Options</a> to manage them."
@@ -63,7 +63,7 @@
         "message": "The domains below don't appear to be tracking you"
     },
     "non_tracker_tip": {
-        "message": "Currently Privacy Badger only checks if third parties are using cookies, HTML5 local storage, or canvas fingerprinting to track your browsing. Some of these domains may be using tracking methods that Privacy Badger can't detect."
+        "message": "Currently Privacy Duck only checks if third parties are using cookies, HTML5 local storage, or canvas fingerprinting to track your browsing. Some of these domains may be using tracking methods that Privacy Duck can't detect."
     },
     "options_domain_search": {
         "message": "Search domains"
@@ -78,37 +78,37 @@
         "message": "Loading..."
     },
     "options_remove_origin_confirm": {
-        "message": "Are you sure you want to remove this origin from Privacy Badger?"
+        "message": "Are you sure you want to remove this origin from Privacy Duck?"
     },
     "options_slider_text": {
-        "message": "Privacy Badger is protecting you across the web! These sliders let you control how Privacy Badger handles each tracker that it has flagged through your browsing."
+        "message": "Privacy Duck is protecting you across the web! These sliders let you control how Privacy Duck handles each tracker that it has flagged through your browsing."
     },
     "options_social_widgets_checkbox": {
         "message": "Replace social widgets"
     },
     "options_title": {
-        "message": "Privacy Badger Options"
+        "message": "Privacy Duck Options"
     },
     "options_webrtc_setting": {
         "message": "Prevent WebRTC from leaking local IP address *"
     },
     "options_webrtc_warning": {
-        "message": "* WebRTC can leak your local IP address. Privacy Badger's default setting helps protect you, but for added protection you may enable this option. Note that doing so may degrade performance on some tools like Google Hangouts."
+        "message": "* WebRTC can leak your local IP address. Privacy Duck's default setting helps protect you, but for added protection you may enable this option. Note that doing so may degrade performance on some tools like Google Hangouts."
     },
     "pb_detected": {
-        "message": "Privacy Badger detected"
+        "message": "Privacy Duck detected"
     },
     "popup_blocked": {
         "message": "There are no third party resources on this site."
     },
     "popup_disable_for_site": {
-        "message": "Disable Privacy Badger for This Site"
+        "message": "Disable Privacy Duck for This Site"
     },
     "popup_enable_for_site": {
-        "message": "Enable Privacy Badger for This Site"
+        "message": "Enable Privacy Duck for This Site"
     },
     "popup_instructions": {
-        "message": "potential <a target='_blank' href='https://www.eff.org/privacybadger#trackers'>trackers</a> on this page. These sliders let you control how Privacy Badger handles each one. You shouldn't need to adjust them unless something is broken."
+        "message": "potential <a target='_blank' href='https://www.eff.org/privacybadger#trackers'>trackers</a> on this page. These sliders let you control how Privacy Duck handles each one. You shouldn't need to adjust them unless something is broken."
     },
     "popup_noblocked": {
         "message": "Why isn't anything blocked?"
@@ -117,17 +117,17 @@
         "message": "Options"
     },
     "privacy_badger": {
-        "message": "Privacy Badger"
+        "message": "Privacy Duck"
     },
     "privacy_badger_what_is": {
-        "message": "What is Privacy Badger?"
+        "message": "What is Privacy Duck?"
     },
     "remove_button": {
         "description": "This is the label for the 'Remove selected' buttons.",
         "message": "Remove selected"
     },
     "report_broken_site": {
-        "message": "Did Privacy Badger break this site? Let us know!"
+        "message": "Did Privacy Duck break this site? Let us know!"
     },
     "report_button": {
         "message": "Submit Error"
@@ -136,7 +136,7 @@
         "message": "Cancel"
     },
     "report_terms": {
-        "message": "This will automatically send the following information to EFF: the site you're currently visiting, your browser version, the version of Privacy Badger, and the state of all of the sliders for this site."
+        "message": "This will automatically send the following information to EFF: the site you're currently visiting, your browser version, the version of Privacy Duck, and the state of all of the sliders for this site."
     },
     "report_title": {
         "message": "Report an Error"
@@ -173,11 +173,11 @@
         "message": "Whitelisted domains"
     },
     "intro1": {
-        "description": "firstRun.html intro to Privacy Badger",
-        "message": "Privacy Badger blocks spying ads and invisible trackers.  It's there to ensure that companies can't track your browsing without your consent."
+        "description": "firstRun.html intro to Privacy Duck",
+        "message": "Privacy Duck blocks spying ads and invisible trackers.  It's there to ensure that companies can't track your browsing without your consent."
     },
     "intro2":{
-        "message": "This extension is designed to automatically protect your privacy from third party trackers that load invisibly when you browse the web. We send the Do Not Track header with each request, and our extension     evaluates the likelihood that you are still being tracked. If the algorithm deems the likelihood is too high, we automatically block your request from being sent to the domain. Please understand that Privacy Badger is in beta, and the algorithm's determination is not conclusive that the domain is tracking you."
+        "message": "This extension is designed to automatically protect your privacy from third party trackers that load invisibly when you browse the web. We send the Do Not Track header with each request, and our extension     evaluates the likelihood that you are still being tracked. If the algorithm deems the likelihood is too high, we automatically block your request from being sent to the domain. Please understand that Privacy Duck is in beta, and the algorithm's determination is not conclusive that the domain is tracking you."
     },
     "intro_3_states":{
         "message": "Our extension has three states. "
@@ -186,22 +186,22 @@
         "message": "Red"
     },
     "intro_has_blocked":{
-        "message": " means Privacy Badger believes this domain is a tracker, and has blocked it. "
+        "message": " means Privacy Duck believes this domain is a tracker, and has blocked it. "
     },
     "intro_yellow":{
         "message": "Yellow"
     },
     "intro_cookie_blocked":{
-        "message": "means the domain is believed to be both a tracker and necessary for the functioning of the page, so Privacy Badger is allowing it but blocking its cookies."
+        "message": "means the domain is believed to be both a tracker and necessary for the functioning of the page, so Privacy Duck is allowing it but blocking its cookies."
     },
     "intro_green":{
         "message": "Green"
     },
     "intro_no_tracker":{
-        "message": "means that Privacy Badger believes this is not tracker. You can click on the Privacy Badger icon in your browser's toolbar if you wish to override the automatic blocking settings. Or, you can browse in peace as Privacy Badger starts finding and eating up web trackers one by one."
+        "message": "means that Privacy Duck believes this is not tracker. You can click on the Privacy Duck icon in your browser's toolbar if you wish to override the automatic blocking settings. Or, you can browse in peace as Privacy Duck starts finding and eating up web trackers one by one."
     },
     "intro_hungry":{
-        "message":"Nothing can stop the Privacy Badger from eating cookies when it's hungry!"
+        "message":"Nothing can stop the Privacy Duck from eating cookies when it's hungry!"
     },
     "intro_by_eff":{
         "message": "A project of the Electronic Frontier Foundation"
@@ -210,10 +210,10 @@
         "message": "Let the world know that you are taking a stand against online tracking"
     },
     "intro_text": {
-        "message": "You're now protected by Privacy Badger. To learn how Privacy Badger works, click below for a quick tutorial."
+        "message": "You're now protected by Privacy Duck. To learn how Privacy Duck works, click below for a quick tutorial."
     },
     "ded_privacy_badger_alert": {
-        "message": "Privacy Badger Alert!"
+        "message": "Privacy Duck Alert!"
     },
     "ded_logging_into": {
         "message": "Logging into "
@@ -234,7 +234,7 @@
         "message": "Always block third party requests from "
     },
     "options_pb_has_detected": {
-      "message": "Privacy Badger has detected"
+      "message": "Privacy Duck has detected"
     },
     "options_potential": {
       "message": "potential"
@@ -243,10 +243,10 @@
       "message": "tracking domains"
     },
     "options_so_far": {
-      "message": "so far. These sliders let you control how Privacy Badger handles each tracker."
+      "message": "so far. These sliders let you control how Privacy Duck handles each tracker."
     },
     "slideshow_1": {
-      "message": " Hi, I'm Privacy Badger! Thanks for installing me. I'm here to give you some helpful tips, so we can work together."
+      "message": " Hi, I'm Privacy Duck! Thanks for installing me. I'm here to give you some helpful tips, so we can work together."
     },
     "slideshow_2": {
       "message": " I will sit up here in your browser and watch for spying ads and trackers that are recording what you're doing online."
