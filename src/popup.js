@@ -45,8 +45,8 @@ function showNagMaybe() {
   }
 
   if (!seenComic) {
-    nag.show();
-    outer.show();
+    //nag.show();
+    //outer.show();
     // Attach event listeners
     $('#fittslaw').click(_hideNag);
     $("#firstRun").click(function() {
@@ -264,7 +264,7 @@ function refreshPopup(tabId) {
   }
 
   // Display tracker tooltips.
-  $("#blockedResources").html(htmlUtils.getTrackerContainerHtml(tabId));
+  //$("#blockedResources").html(htmlUtils.getTrackerContainerHtml(tabId));
 
   var printable = '';
   var nonTracking = [];
