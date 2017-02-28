@@ -81,7 +81,7 @@
         "message": "Are you sure you want to remove this origin from Privacy Duck?"
     },
     "options_slider_text": {
-        "message": "Privacy Duck is protecting you across the web! These sliders let you control how Privacy Duck handles each tracker that it has flagged through your browsing."
+        "message": "Privacy Duck is protecting you across the web!"
     },
     "options_social_widgets_checkbox": {
         "message": "Replace social widgets"
@@ -108,7 +108,7 @@
         "message": "Enable Privacy Duck for This Site"
     },
     "popup_instructions": {
-        "message": "potential <a target='_blank' href='https://www.eff.org/privacybadger#trackers'>trackers</a> on this page. These sliders let you control how Privacy Duck handles each one. You shouldn't need to adjust them unless something is broken."
+        "message": "potential <a target='_blank' href='https://www.eff.org/privacybadger#trackers'>trackers</a> on this page."
     },
     "popup_noblocked": {
         "message": "Why isn't anything blocked?"

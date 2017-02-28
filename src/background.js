@@ -129,12 +129,12 @@ Badger.prototype = {
 
   showFirstRunPage: function(){
     var settings = this.storage.getBadgerStorageObject("settings_map");
-    if (settings.getItem("isFirstRun") && !chrome.extension.inIncognitoContext) {
-      chrome.tabs.create({
-        url: chrome.extension.getURL("/skin/firstRun.html")
-      });
+    //if (settings.getItem("isFirstRun") && !chrome.extension.inIncognitoContext) {
+      //chrome.tabs.create({
+      //  url: chrome.extension.getURL("/skin/firstRun.html")
+      //});
       settings.setItem("isFirstRun", false);
-    }
+    //}
   },
 
   /**
