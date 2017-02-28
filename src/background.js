@@ -51,6 +51,7 @@ function Badger() {
       badger.initializeDNT();
       badger.initializeUserAllowList();
       badger.enableWebRTCProtection();
+      badger.loadDefaultBlockList();
       //if (!badger.isIncognito) {badger.showFirstRunPage();}
     }
 
@@ -126,6 +127,13 @@ Badger.prototype = {
 
 
   // Methods
+
+  
+    loadDefaultBlockList: function(){
+        console.log('default block list');
+        this.storage.setupHeuristicAction('doubleclick.net', 'block');
+        this.storage.setupUserAction('doubleclick.net', 'block');
+    },
 
   showFirstRunPage: function(){
     var settings = this.storage.getBadgerStorageObject("settings_map");
