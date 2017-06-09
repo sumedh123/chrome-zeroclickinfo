@@ -66,7 +66,8 @@
       {
         "matches": ["<all_urls>"],
         "all_frames": true,
-        "css": ["public/css/noatb.css"]
+        "css": ["public/css/noatb.css"],
+        "run_at": "document_start"
       },
       {
           "js": [
