@@ -134,11 +134,9 @@ var ATB = (() => {
          * We pass the number of days the extension was installed in the url
          */
         setSurveyPage: () => {
-            
-            let browserToURLmap = {
-                'chrome': 'c',
-                'moz': 'ff'
-            }
+
+            //TODO: only in chrome for now. We'll handle the survey
+            // in the legacy portion of the firefox version separatly
             let versionMap = { 'beta': 'v2'}
             let baseSurveyURL = 'https://www.surveymonkey.com/r/' 
                 
@@ -149,21 +147,11 @@ var ATB = (() => {
                 if (alarmEvent.name === 'updateUninstallURL') {
                     // get the current versions
                     let versions = ATB.parseATBvalue(settings.getSetting('atb'))
-
-                    //TODO: remove when v2 is default
-                    //chrome is v2 by default. For firefox we check the version setting
-                    let extensionVersion = 'v1';
-                    if (browser === 'chrome'){
-                        extensionVerson = 'v2';
-                    }
-                    else {
-                        versionMap[settings.getSetting('version')] || 'v1'
-                    }
-
+                    let extensionVersion = 'v2';
                     let atbDelta = ATB.calculateATBdelta(versions.major, versions.minor)
                     let uninstallURLParam = atbDelta <= 14 ? atbDelta : 15
 
-                    let url = baseSurveyURL + browserToURLmap.browser + extensionVersion
+                    let url = baseSurveyURL + 'c' + extensionVersion
 
                     // set the new survey url
                     chrome.runtime.setUninstallURL(url + '_DOC_' +  uninstallURLParam);
