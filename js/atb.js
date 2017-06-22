@@ -118,14 +118,71 @@ var ATB = (() => {
         },
 
         onInstalled: () => {
-            ATB.setInitialVersions();
-            ATB.inject();
-            
+            ATB.setInitialVersions()
+            ATB.inject()
+            ATB.setSurveyPage()
         },
 
         startUpPage: () => {
             if (!chrome.extension.inIncognitoContext) {
                 chrome.tabs.create({url: "/html/intro.html"});
+            }
+        },
+
+        /*
+         * Survey page that is opened when a user uninstalls. 
+         * We pass the number of days the extension was installed in the url
+         */
+        setSurveyPage: () => {
+            
+            let browserToURLmap = {
+                'chrome': 'c',
+                'moz': 'ff'
+            }
+            let versionMap = { 'beta': 'v2'}
+            let baseSurveyURL = 'https://www.surveymonkey.com/r/' 
+                
+            // we can't handle uninstall events so update the survey url periodically
+            chrome.alarms.create('updateUninstallURL', {periodInMinutes: 1});
+            
+            chrome.alarms.onAlarm.addListener( (alarmEvent) => {
+                if (alarmEvent.name === 'updateUninstallURL') {
+                    // get the current versions
+                    let versions = ATB.parseATBvalue(settings.getSetting('atb'))
+
+                    //TODO: remove when v2 is default
+                    //chrome is v2 by default. For firefox we check the version setting
+                    let extensionVersion = 'v1';
+                    if (browser === 'chrome'){
+                        extensionVerson = 'v2';
+                    }
+                    else {
+                        versionMap[settings.getSetting('version')] || 'v1'
+                    }
+
+                    let atbDelta = ATB.calculateATBdelta(versions.major, versions.minor)
+                    let uninstallURLParam = atbDelta <= 14 ? atbDelta : 15
+
+                    let url = baseSurveyURL + browserToURLmap.browser + extensionVersion
+
+                    // set the new survey url
+                    chrome.runtime.setUninstallURL(url + '_DOC_' +  uninstallURLParam);
+                 }
+            });
+        },
+
+        // get the number of days since an ATB value
+        calculateATBdelta: (ogMajor, ogMinor) => {
+            let currentVersions = ATB.calculateInitialVersions(),
+            majorDiff = currentVersions.major - ogMajor,
+            minorDiff = Math.abs(currentVersions.minor - ogMinor);
+            return majorDiff > 0 ? (7 * majorDiff) + minorDiff : minorDiff;
+        },
+
+        parseATBvalue: (value) => {
+            let [, major, minor] = value.match(/^v(\d+)-(\d+)/);
+            if (major && minor) {
+                return {major: major, minor: minor}
             }
         }
     }
