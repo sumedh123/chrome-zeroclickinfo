@@ -19,11 +19,12 @@ const trivial_cookie_host_c = new RegExp(".*");
  * @param to
  * @constructor
  */
-function Rule(from, to) {
+function Rule(from, to, rule_set) {
   if (from === "^http:" && to === "https:") {
     // This is a trivial rule, rewriting http->https with no complex RegExp.
     this.to = trivial_rule_to;
     this.from_c = trivial_rule_from_c;
+    rule_set.hasTrivial = true;
   } else {
     // This is a non-trivial rule.
     this.to = to;
@@ -156,6 +157,8 @@ RuleSets.prototype = {
   addUserRule : function(params) {
     log(INFO, 'adding new user rule for ' + JSON.stringify(params));
     var new_rule_set = new RuleSet(params.host, true, "user rule");
+    console.log('adding new user rule for ' + JSON.stringify(params));
+  
     var new_rule = new Rule(params.urlMatcher, params.redirectTo);
     new_rule_set.rules.push(new_rule);
     if (!(params.host in this.targets)) {
@@ -206,7 +209,7 @@ RuleSets.prototype = {
     var rules = ruletag.getElementsByTagName("rule");
     for(var j = 0; j < rules.length; j++) {
       rule_set.rules.push(new Rule(rules[j].getAttribute("from"),
-                                    rules[j].getAttribute("to")));
+                                    rules[j].getAttribute("to"), rule_set));
     }
 
     var exclusions = ruletag.getElementsByTagName("exclusion");
@@ -235,6 +238,27 @@ RuleSets.prototype = {
          this.targets[host] = [];
        }
        this.targets[host].push(rule_set);
+
+       // check if host matches one of the more complicated rules
+       // if it does then it's not a trivial host to upgrade
+       if ( rule_set.hasTrivial) {
+           let toPrint = true
+
+            for(var k = 0; k < rules.length; k++) {
+                let from = rules[k].getAttribute("from")
+
+                if (from !== "^http:") {
+                    let regex = new RegExp(from)
+                    let fullHost = "http://" + host + "/"
+
+                    if (regex.exec(fullHost)){
+                        toPrint = false
+                    }
+                }
+            }
+
+           if (toPrint) console.log(host)
+       }
     }
   },
 
