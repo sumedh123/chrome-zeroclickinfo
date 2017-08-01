@@ -1,11 +1,6 @@
 const Parent = window.DDG.base.Model;
-const backgroundPage = chrome.extension.getBackgroundPage();
 
 function PrivacyOptions (attrs) {
-
-    attrs.trackerBlockingEnabled = backgroundPage.settings.getSetting('trackerBlockingEnabled');
-    attrs.httpsEverywhereEnabled = backgroundPage.settings.getSetting('httpsEverywhereEnabled');
-    attrs.embeddedTweetsEnabled = backgroundPage.settings.getSetting('embeddedTweetsEnabled');
     Parent.call(this, attrs);
 };
 
@@ -13,6 +8,11 @@ function PrivacyOptions (attrs) {
 PrivacyOptions.prototype = $.extend({},
   Parent.prototype,
   {
+      update: function(settings) {
+          this.trackerBlockingEnabled = settings['trackerBlockingEnabled'];
+          this.httpsEverywhereEnabled =settings['httpsEverywhereEnabled'];
+          this.embeddedTweetsEnabled = settings['embeddedTweetsEnabled'];
+      },
 
       modelName: 'privacyOptions',
 
@@ -20,8 +20,7 @@ PrivacyOptions.prototype = $.extend({},
           if (this.hasOwnProperty(k)) {
               this[k] = !this[k];
               console.log(`PrivacyOptions model toggle ${k} is now ${this[k]}`);
-
-              backgroundPage.settings.updateSetting(k, this[k]);
+              chrome.runtime.sendMessage({updateSetting: {name: k, value: this[k]}});
           }
       }
 

@@ -72,8 +72,9 @@ require.scopes.settings =(() => {
     };
 
     var onGetSetting = function(req, sender, res){
-        if(req.getSetting){
-            res(getSetting(req.getSetting.name));
+        // check if key exists. null value returns all settings
+        if(req.hasOwnProperty('getSetting')){
+            res(getSetting(req.getSetting));
         }
     };
 

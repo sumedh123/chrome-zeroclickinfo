@@ -10,6 +10,13 @@ function PrivacyOptions (ops) {
 
     this.setup();
 
+    var thisView = this
+
+    chrome.runtime.sendMessage({getSetting: null}, (res) => {
+        thisView.model.update(res)
+        thisView.rerender()
+    });
+
 };
 
 PrivacyOptions.prototype = $.extend({},
