@@ -103,6 +103,13 @@ chrome.contextMenus.create({
 chrome.webRequest.onBeforeRequest.addListener(
     function (requestData) {
 
+      // cancel and resend /t/lc and t/iaolc_ requests
+      if (requestData.url && requestData.tabId !== -1 && (requestData.url.match('duckduckgo.com/t/lc') || requestData.url.match('duckduckgo.com/t/iaolc_'))) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', requestData.url)
+          xhr.send(null)
+          return {cancel: true}
+      }
       let tabId = requestData.tabId;
 
       // Add ATB for DDG URLs
