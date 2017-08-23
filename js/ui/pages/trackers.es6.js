@@ -86,11 +86,7 @@ Trackers.prototype = $.extend({},
                 model: new LinkableModel({
                     text: 'Settings',
                     id: 'options-link',
-<<<<<<< Updated upstream
-                    link: chrome.runtime.openOptionsPage,
-=======
                     link: this.openOptionsPage,
->>>>>>> Stashed changes
                     klass: 'link-secondary',
                     spanClass: 'icon icon__settings pull-right'
                 }),
