@@ -165,7 +165,7 @@ chrome.webRequest.onBeforeRequest.addListener(
                 thisTab.addToTrackers(tracker);
 
                 // Block the request if the site is not whitelisted
-                if (!thisTab.site.whitelisted) {
+                if (!thisTab.site.whitelistedi && !tracker.isFirstParty) {
                     thisTab.addOrUpdateTrackersBlocked(tracker);
                     chrome.runtime.sendMessage({"updateTrackerCount": true});
 

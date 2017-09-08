@@ -26,6 +26,8 @@ function isTracker(urlToCheck, currLocation, tabId, request) {
 
     var toBlock = false;
 
+    let isaFirstParty = isFirstPartyRequest(currLocation, urlToCheck)
+
     // DEMO embedded tweet option
     // a more robust test for tweet code may need to be used besides just
     // blocking platform.twitter.com
@@ -43,10 +45,6 @@ function isTracker(urlToCheck, currLocation, tabId, request) {
         var social_block = settings.getSetting('socialBlockingIsEnabled');
         var blockSettings = settings.getSetting('blocking').slice(0);
 
-        // don't block 1st party requests
-        if (isFirstPartyRequest(currLocation, urlToCheck)) {
-            return
-        }
         if(social_block){
             blockSettings.push('Social');
         }
@@ -54,24 +52,30 @@ function isTracker(urlToCheck, currLocation, tabId, request) {
         // Look up trackers by parent company. This function also checks to see if the poential 
         // tracker is related to the current site. If this is the case we consider it to be the 
         // same as a first party requrest and return
-        var trackerByParentCompany = checkTrackersWithParentCompany(blockSettings, urlSplit, currLocation);
-        if(trackerByParentCompany) {
-            // check cancel to see if this tracker is related to the current site
-            if (trackerByParentCompany.cancel) {
-                return;
-            }
-            else {
-                return trackerByParentCompany;
+        if (!isaFirstParty) {
+            var trackerByParentCompany = checkTrackersWithParentCompany(blockSettings, urlSplit, currLocation);
+            
+            if(trackerByParentCompany) {
+                // check cancel to see if this tracker is related to the current site
+                if (trackerByParentCompany.cancel) {
+                    return;
+                }
+                else {
+                    return trackerByParentCompany;
+                }
             }
         }
 
         // block trackers from easylists
         let easylistBlock = checkEasylists(urlToCheck, currLocation, request);
         if (easylistBlock) {
+            easylistBlock.isFirstParty = isaFirstParty
             return easylistBlock;
         }
 
     }
+    
+
     return toBlock;
 }
 
